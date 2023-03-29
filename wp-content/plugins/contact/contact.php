@@ -6,7 +6,7 @@
 function contact_Us_plugin(){
 $content = '';
 $content .= '<h2> Contact us  </h2>';
-$content .= '<form method="post" action="http://ecomwordpress.test/wordpress/thank-you/">';
+$content .= '<form method="post" action="http://localhost/ECOM/wordpress/">';
 $content .='<label for="name">Name :</label> </br>';
 $content .= '<input type="text" name="name" id="name" class="form-control w-100" placeholder="Enter Your Name"/> </br>' ;
 $content .='<label for="email">Email :</label> </br>';
@@ -32,5 +32,16 @@ function GetData(){
     }
 }
 add_action('wp_head','GetData');
+
+function mailtrap($phpmailer) {
+    $phpmailer->isSMTP();
+    $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+    $phpmailer->SMTPAuth = true;
+    $phpmailer->Port = 2525;
+    $phpmailer->Username = '9ee126a967d04a';
+    $phpmailer->Password = 'e80116c50acccc';
+  }
+  
+  add_action('phpmailer_init', 'mailtrap');
 
 ?>
